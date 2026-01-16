@@ -23,7 +23,7 @@ This project includes a **Builder** that generates a single standalone `.sh` scr
 ## How to Use
 
 1. You must have **ROOT** access.
-2. Run the `libinjector.sh` script (or the direct inject if u don't want to write the package name every time u start the script, just edit the script and set in line 51 ur package name.) using **MT Manager** (run as Root) or via terminal:
+2. Run the `libinjector.sh` script (or the direct inject if u don't want to write the package name every time u start the script, just edit the script and set in line 57 ur package name.) using **MT Manager** (run as Root) or via terminal:
 
 ```bash
 su -c sh libinjector.sh
@@ -34,7 +34,7 @@ or
 su -c sh libinjector-DIRECT-INJECT.sh
 ```
 
-3. Enter the game package name when prompted (e.g. `com.shootergamesonline.blockstrike`), If you used the direct inject version, edit the file and modify line 51 to set your package name.
+3. Enter the game package name when prompted (e.g. `com.shootergamesonline.blockstrike`), If you used the direct inject version, edit the file and modify line 57 to set your package name.
 
 ### WARNING
 

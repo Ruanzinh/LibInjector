@@ -2,7 +2,7 @@
 # BY RUANZINH
 
 # To set the package name, EDIT THE
-# PACKAGE_NAME VARIABLE IN LINE 51.
+# PACKAGE_NAME VARIABLE IN LINE 57.
 
 # Set ur libname here
 LIB_NAME="libTool.so"
@@ -78,10 +78,19 @@ else
 fi
 
 echo -e "${CYAN}[*] Starting game...${NC}"
-monkey -p "$PACKAGE_NAME" -c android.intent.category.LAUNCHER 1 > /dev/null 2>&1
+
+ACTIVITY=$(cmd package resolve-activity --brief "$PACKAGE_NAME" | tail -n 1)
+
+if [ -z "$ACTIVITY" ]; then
+    echo -e "${RED}[!] Unable to resolve main activity.${NC}"
+    exit 1
+fi
+
+am start -n "$ACTIVITY" > /dev/null 2>&1
 sleep 3
 
 PID=$(pidof -s "$PACKAGE_NAME")
+
 if [ -z "$PID" ]; then
     echo -e "${RED}[!] Game closed.${NC}"
     setenforce 1
