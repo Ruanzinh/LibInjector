@@ -25,13 +25,16 @@ clear
 echo -e "${CYAN}=== Lib Injector via PTRACE ===${NC}"
 
 echo -e "${GREEN}[TELEGRAM]: @Papagaio_Verdadeiro${NC}"
-setenforce 0
-echo -e "${PURPLE}[*] SELinux set to Permissive.${NC}"
 
 if [ "$(id -u)" -ne 0 ]; then
     echo -e "${RED}[!] ROOT Access Required.${NC}"
     exit 1
 fi
+
+trap 'setenforce 1; rm -f "$TEMP_BIN"' EXIT
+
+setenforce 0
+echo -e "${PURPLE}[*] SELinux set to Permissive.${NC}"
 
 echo -e "${CYAN}[*] Extracting injector...${NC}"
 echo "$PAYLOAD" | base64 -d > "$TEMP_BIN"
@@ -39,6 +42,8 @@ chmod 777 "$TEMP_BIN"
 
 if [ ! -s "$TEMP_BIN" ]; then
     echo -e "${RED}[!] Critical error in extraction.${NC}"
+    setenforce 1
+    echo -e "${PURPLE}[*] SELinux set back to Enforcing.${NC}"
     rm "$TEMP_BIN"
     exit 1
 fi
@@ -51,6 +56,8 @@ read PACKAGE_NAME
 
 if [ -z "$PACKAGE_NAME" ]; then
     echo -e "${RED}[!] Canceled.${NC}"
+    setenforce 1
+    echo -e "${PURPLE}[*] SELinux set back to Enforcing.${NC}"
     rm "$TEMP_BIN"
     exit 1
 fi
@@ -62,6 +69,8 @@ if [ -f "$ORIGIN_PATH" ]; then
     chmod 777 "$TEMP_LIB_PATH"
 else
     echo -e "${RED}[!] Lib not found. ${NC}"
+    setenforce 1
+    echo -e "${PURPLE}[*] SELinux set back to Enforcing.${NC}"
     rm "$TEMP_BIN"
     exit 1
 fi
@@ -73,6 +82,8 @@ sleep 3
 PID=$(pidof -s "$PACKAGE_NAME")
 if [ -z "$PID" ]; then
     echo -e "${RED}[!] Game closed.${NC}"
+    setenforce 1
+    echo -e "${PURPLE}[*] SELinux set back to Enforcing.${NC}"
     rm "$TEMP_BIN"
     exit 1
 fi
