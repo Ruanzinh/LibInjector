@@ -1,6 +1,9 @@
 # TELEGRAM: @Papagaio_Verdadeiro
 # BY RUANZINH
 
+# To set the package name, EDIT THE
+# PACKAGE_NAME VARIABLE IN LINE 51.
+
 # Set ur libname here
 LIB_NAME="libTool.so"
 
@@ -45,9 +48,7 @@ fi
 
 echo "CURRENT PATH: ${ORIGIN_PATH}\nTARGET LIB: ${LIB_NAME}"
 
-echo -e "${GREEN}[?] Game Package (ex: com.shootergamesonline.blockstrike):${NC}"
-echo -n "> "
-read PACKAGE_NAME
+PACKAGE_NAME="com.shootergamesonline.blockstrike"
 
 if [ -z "$PACKAGE_NAME" ]; then
     echo -e "${RED}[!] Canceled.${NC}"

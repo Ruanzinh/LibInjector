@@ -9,6 +9,7 @@ This project includes a **Builder** that generates a single standalone `.sh` scr
 ```text
 .
 ├── libinjector.sh         # Final generated file, ready to use
+├── libinjector-DIRECT-INJECT.sh  # Same thing, but you don't need to set the package every time you start the script.
 └── src/
     ├── injector.cpp   # C++ source code (Injection engine)
     ├── injector       # Compiled binary (AArch64)
@@ -22,13 +23,17 @@ This project includes a **Builder** that generates a single standalone `.sh` scr
 ## How to Use
 
 1. You must have **ROOT** access.
-2. Run the `libinjector.sh` script (or the name you defined) using **MT Manager** (run as Root) or via terminal:
+2. Run the `libinjector.sh` script (or the direct inject if u don't want to write the package name every time u start the script, just edit the script and set in line 51 ur package name.) using **MT Manager** (run as Root) or via terminal:
 
 ```bash
 su -c sh libinjector.sh
 ```
+or
 
-3. Enter the game package name when prompted (e.g. `com.shootergamesonline.blockstrike`).
+bash
+su -c sh libinjector-DIRECT-INJECT.sh
+
+3. Enter the game package name when prompted (e.g. `com.shootergamesonline.blockstrike`), If you used the direct inject version, edit the file and modify line 51 to set your package name.
 
 ### WARNING
 
@@ -51,7 +56,7 @@ If you want to change it:
 
 ## How to Compile and Generate (for devs)
 
-If you modified the C++ code (`injector.cpp`) and want to generate a new script:
+If you modified the C++ code (`injector.cpp`) and want to generate a new script (This will only generate the normal version of libinjector, If you want to generate the Direct Inject version, just modify the builder.sh file, you're not stupid, It's an extremely simple modification.):
 
 ### 1. Requirements
 
@@ -83,7 +88,7 @@ The final file will be generated and can be moved to the project root.
    The bash script decodes the binary payload (Base64) to `/data/local/tmp/`.
 
 2. **Execution Fix**
-   Sets `setenforce 0` and copies the library from `/sdcard` to `/data/local/tmp` to guarantee execution permissions.
+   Sets `setenforce 0` and copies the library from `/sdcard` to `/data/local/tmp` to guarantee execution permissions. (At the end of the execution, SELinux returns to enforcing mode.)
 
 3. **Injector (C++)**
 
