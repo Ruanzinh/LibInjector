@@ -30,8 +30,8 @@ su -c sh libinjector.sh
 ```
 or
 
-bash
-su -c sh libinjector-DIRECT-INJECT.sh
+```bash
+su -c sh libinjector-DIRECT-INJECT.sh```
 
 3. Enter the game package name when prompted (e.g. `com.shootergamesonline.blockstrike`), If you used the direct inject version, edit the file and modify line 51 to set your package name.
 
