@@ -1,6 +1,6 @@
 # Lib Injector by Ruanzinh
 
-A lightweight and robust shared library (`.so`) injector for Android, based on `ptrace`. Designed to work in Root environments (Termux, MT Manager, KernelSU), bypassing common restrictions such as `noexec` and SELinux.
+A lightweight and robust shared library (`.so`) injector for ARM64 Android Devices, based on `ptrace`. Designed to work in Root environments (Termux, MT Manager, KernelSU), bypassing common restrictions such as `noexec` and SELinux.
 
 This project includes a **Builder** that generates a single standalone `.sh` script containing the injector binary embedded via Base64, ensuring flawless execution without corruption errors or external dependencies.
 
